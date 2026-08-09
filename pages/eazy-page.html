@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <title>Math Training - Eazy mode</title>
+</head>
+
+<body class="h-[100vh] bg-linear-to-r from-green-500 to-red-50 font-[JetBrains_Mono]">
+
+    <main class="flex justify-center align-center">
+        <div class="bg-red-50 h-[auto] px-[50px] mt-[50px] rounded-lg shadow-xl/30 flex flex-col py-[20px]">
+            <h1 class="text-5xl my-[30px] font-bold text-center text-green-700 animate-bounce">Eazy</h1>
+            <p><strong>Correct:</strong> <span id="correctValues"></span></p>
+            <div class="h-[auto] w-[100vh] my-[40px] py-[10px] pl-[5px] font-bold text-4xl border text-center text-red-50 bg-gray-950 rounded-lg"
+                id="fieldExpression"></div>
+            <input type="number" name="answer" id="input-number"
+                class="border rounded-lg h-[30px] text-center font-bold py-[20px] text-2xl">
+            <button onclick="proximo()"
+                class="px-5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-medium shadow-sm hover:shadow transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 mt-[15px] cursor-pointer ">Proximo</button>
+            <a href="index.html"
+                class="px-5 py-2.5 rounded-lg bg-zinc-900 hover:bg-black active:bg-zinc-800 text-white font-medium shadow-sm hover:shadow transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2 my-[40px] text-center">Quit</a>
+        </div>
+    </main>
+    <script>
+
+        const field = document.getElementById("fieldExpression")
+        let correct = document.getElementById("correctValues")
+
+        let acertos = parseInt(localStorage.getItem("acertos"), 10) || 0
+
+        function returnRandomValue(a, b) {
+            return Math.floor(Math.random() * (b - a + 1)) + a
+        }
+
+        function randomIndex(array) {
+            return Math.floor(Math.random() * array.length)
+        }
+
+
+        numbers = []
+        let totalNumbers = returnRandomValue(1, 6)
+        if (totalNumbers == 1) {
+            totalNumbers++
+            for (let i = 1; i <= totalNumbers; i++) {
+                numbers.push(`${returnRandomValue(1, 10)}`)
+            }
+        }
+        else {
+            for (let i = 1; i <= totalNumbers; i++) {
+                numbers.push(`${returnRandomValue(1, 10)}`)
+            }
+        }
+
+        operations = ["+", "-", "*", "/"]
+
+        expression = ""
+
+        for (let i = 1; i < (numbers.length); i++) {
+            expression = expression + `${numbers[randomIndex(numbers)]}` + `${operations[randomIndex(operations)]}`
+            if (i + 1 == numbers.length) {
+                expression = expression + `${numbers[randomIndex(numbers)]}`
+                break
+            }
+        }
+
+        field.innerHTML = expression
+
+
+        const result = parseInt(eval(expression), 10)
+
+        correct.innerHTML = acertos
+
+
+        function proximo() {
+            const inputElement = document.getElementById("input-number")
+            const userValue = parseInt(inputElement.value, 10);
+
+            if (userValue === result) {
+                acertos++
+                localStorage.setItem("acertos", acertos)
+                location.reload()
+            }
+            else {
+                acertos = 0
+                localStorage.setItem("acertos", acertos)
+                window.alert('Incorreta')
+                location.reload()
+            }
+        }
+
+    </script>
+</body>
+
+</html>
