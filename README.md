@@ -53,7 +53,9 @@ git clone [https://github.com/SEU-USUARIO/MATH-TRAINING.git](https://github.com/
 
 ### Crie o arquivo .desktop no diretório de aplicações locais:
 
->nano ~/.local/share/applications/math-training.desktop
+```bash
+nano ~/.local/share/applications/math-training.desktop
+```
 
 ### Cole o conteúdo abaixo (ajustando o caminho absoluto para o local onde você clonou o projeto):
 
