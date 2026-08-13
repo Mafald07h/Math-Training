@@ -47,7 +47,8 @@
             return Math.floor(Math.random() * array.length)
         }
 
-
+        /* Adicionar números a lista 'numbers' no intervalo
+        de returnRandomValue(x,y) */
         numbers = []
         let totalNumbers = returnRandomValue(1, 6)
         if (totalNumbers == 1) {
@@ -76,7 +77,7 @@
 
         field.innerHTML = expression
 
-
+        // Calcular a expressão
         const result = parseInt(eval(expression), 10)
 
         correct.innerHTML = acertos
