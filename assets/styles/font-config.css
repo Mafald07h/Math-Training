@@ -1,0 +1,8 @@
+@font-face {
+    font-family: "Couture-bldit";
+    src: url("../fonts/couture-bldit.otf") format('opentype');
+}
+
+@theme {
+    --font-custom: 'Couture-bldit'
+}
