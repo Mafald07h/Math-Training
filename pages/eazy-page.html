@@ -106,7 +106,7 @@
         const timeRegress = setInterval(()=>{
             timeText.innerHTML = timeActually
             timeActually--
-            if(timeActually == -2){
+            if(timeActually == -1){
                 alert("Você perdeu ! Tempo encerrado")
                 acertos = 0
                 localStorage.setItem("acertos", acertos)
