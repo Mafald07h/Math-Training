@@ -20,7 +20,7 @@
             <h1 class="text-5xl my-[30px] font-bold text-center text-green-700 animate-bounce">Eazy</h1>
             <div class="flex justify-between">
                 <p><strong>Correct:</strong> <span id="correctValues"></span></p>
-                <p><span class="font-bold">Time</span>: 0</p>
+                <p><span class="font-bold ml-[0]">Time</span>:<span id="time"></span></p>
             </div>
             <div class="h-[auto] w-[100vh] my-[40px] py-[10px] pl-[5px] font-bold text-4xl border text-center text-red-50 bg-gray-950 rounded-lg"
                 id="fieldExpression"></div>
@@ -99,7 +99,22 @@
                 location.reload()
             }
         }
+    
+        let timeText = document.getElementById("time")
+        let timeActually = 10
 
+        const timeRegress = setInterval(()=>{
+            timeText.innerHTML = timeActually
+            timeActually--
+            if(timeActually == -2){
+                alert("Você perdeu ! Tempo encerrado")
+                acertos = 0
+                localStorage.setItem("acertos", acertos)
+                location.reload()
+            }
+        },1000)
+
+        
     </script>
 </body>
 

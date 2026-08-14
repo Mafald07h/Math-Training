@@ -15,5 +15,8 @@
     "concurrently": "^10.0.4",
     "electron": "^43.3.0",
     "electron-reload": "^2.0.0-alpha.1"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.21"
   }
 }
