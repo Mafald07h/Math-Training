@@ -36,8 +36,9 @@
         const field = document.getElementById("fieldExpression")
         let correct = document.getElementById("correctValues")
 
-        let acertos = parseInt(localStorage.getItem("acertos"), 10) || 0
+        let acertos_hard = parseInt(localStorage.getItem("acertos_hard"), 10) || 0
 
+        
         function returnRandomValue(a, b) {
             return Math.floor(Math.random() * (b - a + 1)) + a
         }
@@ -60,8 +61,7 @@
             }
         }
 
-        operations = ["+", "-", "*", "/"]
-
+        operations = ["+", "-", "x", "/"]
         expression = ""
 
         for (let i = 1; i < (numbers.length); i++) {
@@ -75,9 +75,10 @@
         field.innerHTML = expression
 
 
+        expression = expression.replaceAll("x","*")
         const result = parseInt(eval(expression), 10)
 
-        correct.innerHTML = acertos
+        correct.innerHTML = acertos_hard
 
 
         function proximo() {
@@ -85,13 +86,13 @@
             const userValue = parseInt(inputElement.value, 10);
 
             if (userValue === result) {
-                acertos++
-                localStorage.setItem("acertos", acertos)
+                acertos_hard++
+                localStorage.setItem("acertos_hard", acertos_hard)
                 location.reload()
             }
             else {
-                acertos = 0
-                localStorage.setItem("acertos", acertos)
+                acertos_hard = 0
+                localStorage.setItem("acertos_hard", acertos_hard)
                 window.alert('Incorreta')
                 location.reload()
             }
@@ -105,8 +106,8 @@
             timeActually--
             if(timeActually == -1){
                 alert("Você perdeu ! Tempo encerrado")
-                acertos = 0
-                localStorage.setItem("acertos", acertos)
+                acertos_hard = 0
+                localStorage.setItem("acertos_hard", acertos_hard)
                 location.reload()
             }
         },1000)
